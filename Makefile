@@ -2,14 +2,17 @@ UV = uv
 
 all: install
 
+ARGS ?= --functions_definition data/input/functions_definition.json \
+--input data/input/function_calling_tests.json
+
 install:
 	$(UV) sync
 
 run:
-	$(UV) run main_file_name
+	$(UV) run python -m src $(ARGS)
 
 debug:
-	$(UV) run python3 -m pdb
+	$(UV) run python -m pdb -m src $(ARGS)
 
 clean:
 	rm -rf __pycache__ .mypy_cache .pytest_cache .ruff_cache
@@ -18,11 +21,11 @@ clean:
 	find . -type f -name "*.pyo" -delete
 
 lint:
-	$(UV) run flake8 .
-	$(UV) run mypy . --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
+	$(UV) run flake8 src
+	$(UV) run mypy src --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
 
 lint-strict:
-	$(UV) run flake8 .
-	$(UV) run mypy . --strict
+	$(UV) run flake8 src
+	$(UV) run mypy src --strict
 
 .PHONY: all install run debug clean lint lint-strict
