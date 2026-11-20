@@ -25,8 +25,8 @@ def parse_arguments() -> PathChecker:
     """Parse command-line arguments.
 
     This function sets the Paths to functions definitions,
-    input and output files. If a flaf is missing, the default
-    path is used. If a flag is give, its value is used.
+    input and output files. If a flag is missing, the default
+    path is used. If a flag is given, its value is used.
 
     Returns:
         PathChecker object with three paths.
@@ -34,7 +34,7 @@ def parse_arguments() -> PathChecker:
     Raises:
         SystemExit: When flag is incorrect.
     """
-    file_directory = Path(__file__).resolve().parents[1]
+    file_directory = Path(__file__).resolve().parents[2]
     parser = ArgumentParser(description="Parse files names")
     parser.add_argument("--functions_definition", type=Path,
                         default=file_directory / "data" /
