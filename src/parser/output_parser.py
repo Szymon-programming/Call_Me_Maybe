@@ -44,7 +44,7 @@ def output_writer(file_path: Path,
             file.write(json_text)
     except PermissionError as e:
         raise FileException("No permission to create file with path: "
-                            f"{file_path}") from e
+                            f"{file_path} or path is a directory.") from e
     except OSError as e:
         raise FileException(f"Cannot make an output file: {e}"
                             ", with path: "
