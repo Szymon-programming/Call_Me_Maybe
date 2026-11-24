@@ -5,3 +5,4 @@ __pycache__/
 .ruff_cache/
 *.pyc
 sdk_test/
+data/output/
